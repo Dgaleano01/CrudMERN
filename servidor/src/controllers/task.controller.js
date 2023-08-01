@@ -22,7 +22,7 @@ export const createTask = async (req, res) => {
         user: req.user.id
     });
     const savedTask = await newTask.save();
-    res.status(200)
+    res.status(200).send(savedTask)
 }
 
 export const updateTask = async (req, res)=>{
@@ -34,7 +34,7 @@ export const updateTask = async (req, res)=>{
 }
 
 export const deleteTask = async (req, res)=>{
-    const task = await Task.findByIdDelete(req.params.id);
+    const task = await Task.findByIdAndDelete(req.params.id);
     if (!task)return res.status(404).json({ message: 'Task not found' });
-    res.status(204);
+    res.sendStatus(204);
 }
