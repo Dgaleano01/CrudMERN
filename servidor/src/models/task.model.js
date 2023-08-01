@@ -1,20 +1,25 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
     title:{
         type: String,
-        require:true
+        require: true,
     },
-    password:{
+    description:{
         type:String,
-        require:true
+        require:true,
     },
-    Date:{
+    date:{
         type:Date,
         default:Date.now
+    },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        require: true
     }
 },{
     timestamps:true
 });
 
-export default mongoose.model("Task", TaskSchema);
+export default mongoose.model("Task", taskSchema);
