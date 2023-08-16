@@ -18,11 +18,14 @@ function RegisterPage() {
       signup(values);//
     })
   return (
-    <div className="bg-zinc-200 max-w-md p-10 rounded-md">
 
+    <div className="flex h-screen items-center justify-center">
+
+    <div className="bg-zinc-200 max-w-md p-10 rounded-md">
+    <h1>Rgistrar</h1>
         {
           RegisterErrors.map((error, i) => (
-            <div className="bg-red-500 text-white p-2" key={i}>
+            <div className="bg-red-500 text-white p-2 my-2" key={i}>
               {error}  
             </div>
           ))
@@ -51,6 +54,7 @@ function RegisterPage() {
 
             <button type='submit' className='bg-blue-500 hover:bg-slate-700 text-white font-bold py-2 rounded px-4'>Regitrar</button>
         </form>
+    </div>
     </div>
   )
 }

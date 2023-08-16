@@ -1,22 +1,29 @@
 import { useForm } from "react-hook-form"
+import { useAuth } from "../context/AuthContext";
 
 function LoginPage(){
 
     const { register, handleSubmit, formState: { errors }} = useForm()
+    const { signin, errors:SigninErrors } = useAuth()
 
     const onSubmited = handleSubmit(async (data) => {
-        console.log(data);//
+        signin(data);//
       })
 
     return(
+      <div className="flex h-screen items-center justify-center">
+        
         <div className="bg-zinc-200 max-w-md p-10 rounded-md">
+        <h1>Iniciar</h1>
+        {
+          SigninErrors.map((error, i) => (
+            <div className="bg-red-500 text-white p-2 my-2" key={i}>
+              {error}  
+            </div>
+          ))
+        }
+
             <form onSubmit={onSubmited}>
-            <input type="text" {...register("username", {required:true})} placeholder="Username" className="w-full bg-zinc-600 text-white px-4 py-4 rounded-md my-2" />
-
-            {
-            errors.username && <p className='text-red-500'>User is Required</p>
-          }
-
 
             <input type="email" {...register("email", {required:true})} placeholder="Email" className="w-full bg-zinc-600 text-white px-4 py-4 rounded-md my-2"/>
 
@@ -31,9 +38,10 @@ function LoginPage(){
           }
 
 
-            <button type='submit' className='bg-blue-500 hover:bg-slate-700 text-white font-bold py-2 rounded px-4'>Regitrar</button>
+            <button type='submit' className='bg-blue-500 hover:bg-slate-700 text-white font-bold py-2 rounded px-4'>Ingresar</button>
         </form>
         </div>
+      </div>
     )
 }
 
